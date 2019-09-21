@@ -37,7 +37,7 @@ const LightsOnGame = (props) => {
                 backgroundColor: 'tan', 
                 display: 'inline-block',
                 margin: '20px',
-                padding: '10px', 
+                padding: '20px', 
                 width: 'fit-content' 
             }}>
                 {new Array(size).fill(0).map((_, row) => (
@@ -50,10 +50,10 @@ const LightsOnGame = (props) => {
                                     id={`light-${number}`}
                                     style={{ 
                                         backgroundColor: isOn ? 'white' : 'grey',
-                                        border: 'solid brown 2px',
+                                        border: 'solid black 2px',
                                         color: 'white',
-                                        height: '60px',
-                                        margin: '5px',
+                                        height: '80px',
+                                        margin: '20px',
                                         width: '60px'
                                     }}
                                     onClick={isOn ? () => {} : () => { trigger(number) }}
