@@ -11,10 +11,14 @@ const LightsOnGame = (props) => {
     const trigger = (number) => {
         pattern.forEach(offset => {
             const lightToChange = number + offset
-            const shouldChange = lightToChange >= 0
-                                && lightToChange < size * size
-                                && (Math.abs(offset) !== 1 
-                                    || Math.floor(number / size) === Math.floor(lightToChange / size))
+            const lightIsOnBoard = lightToChange >= 0 && lightToChange < size * size
+            // If the offset was 1 (next to the pressed light), then make sure
+            // our math doesn't cause wrapping - a light on the previous or next
+            // row being activated because the pressed light is on a side.
+            const lightDidntWrap = Math.abs(offset) === 1 
+                ? Math.floor(number / size) === Math.floor(lightToChange / size)
+                : true
+            const shouldChange = lightIsOnBoard && lightDidntWrap 
             if (shouldChange) {
                 setLights(prevLights => {
                     const newLights = [...prevLights]
